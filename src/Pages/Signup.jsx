@@ -53,7 +53,7 @@ const SignUp = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:3030/api/users/register', {
+            const response = await fetch('https://ticketvista-backend.onrender.com/api/users/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

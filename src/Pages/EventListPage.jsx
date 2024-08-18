@@ -10,7 +10,7 @@ const EventListPage = () => {
 
     const getEvents = async () => {
         try {
-            const response = await fetch('http://localhost:3030/events');
+            const response = await fetch('https://ticketvista-backend.onrender.com/events');
             const eventData = await response.json();
             setData(eventData);
         } catch (error) {
