@@ -72,116 +72,123 @@ const EventForm = ({ onSubmit, className, initialData, onDelete }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className={`bg-white mt-12 bg-opacity-10 backdrop-blur-lg p-6 rounded-lg shadow-lg w-96`}>
-            <div className="mb-4">
-                <label className="block text-white text-md mb-2">Date</label>
-                <InputMask
-                    mask="99/99/9999"
-                    name="date"
-                    value={formData.date}
-                    onChange={handleChange}
-                    placeholder="MM/DD/YYYY"
-                    className="w-full p-3 border border-gray-300 rounded-lg text-black"
-                    required
-                />
+        <form onSubmit={handleSubmit} className={`bg-white mt-12 bg-opacity-10 backdrop-blur-lg p-8 rounded-lg shadow-lg max-w-7xl`}>
+            <div className="grid grid-cols-2 gap-12">
+                <div className="mb-6">
+                    <label className="block text-white text-md mb-2">Date</label>
+                    <InputMask
+                        mask="99/99/9999"
+                        name="date"
+                        value={formData.date}
+                        onChange={handleChange}
+                        placeholder="MM/DD/YYYY"
+                        className="w-full p-4 border border-gray-300 rounded-lg text-black"
+                        required
+                    />
+                </div>
+                <div className="mb-6">
+                    <label className="block text-white text-md mb-2">Location</label>
+                    <input
+                        type="text"
+                        name="location"
+                        value={formData.location}
+                        onChange={handleChange}
+                        placeholder="Location"
+                        className="w-full p-4 border border-gray-300 rounded-lg text-black"
+                        required
+                    />
+                </div>
             </div>
-            {/* Rest of the form inputs remain the same */}
-            <div className="mb-4">
-                <label className="block text-white text-md mb-2">Location</label>
-                <input
-                    type="text"
-                    name="location"
-                    value={formData.location}
-                    onChange={handleChange}
-                    placeholder="Location"
-                    className="w-full p-3 border border-gray-300 rounded-lg text-black"
-                    required
-                />
+            <div className="grid grid-cols-2 gap-12">
+                <div className="mb-6">
+                    <label className="block text-white text-md mb-2">Time</label>
+                    <input
+                        type="text"
+                        name="time"
+                        value={formData.time}
+                        onChange={handleChange}
+                        placeholder="2:00"
+                        className="w-full p-4 border border-gray-300 rounded-lg text-black"
+                        required
+                    />
+                </div>
+                <div className="mb-6">
+                    <label className="block text-white text-md mb-2">Venue</label>
+                    <input
+                        type="text"
+                        name="venue"
+                        value={formData.venue}
+                        onChange={handleChange}
+                        placeholder="Talkatora Stadium"
+                        className="w-full p-4 border border-gray-300 rounded-lg text-black"
+                        required
+                    />
+                </div>
             </div>
-            <div className="mb-4">
-                <label className="block text-white text-md mb-2">Time</label>
-                <input
-                    type="text"
-                    name="time"
-                    value={formData.time}
-                    onChange={handleChange}
-                    placeholder="2:00"
-                    className="w-full p-3 border border-gray-300 rounded-lg text-black"
-                    required
-                />
+            <div className="grid grid-cols-2 gap-12">
+                <div className="mb-6">
+                    <label className="block text-white text-md mb-2">Event Name</label>
+                    <input
+                        type="text"
+                        name="title"
+                        value={formData.title}
+                        onChange={handleChange}
+                        placeholder="Title"
+                        className="w-full p-4 border border-gray-300 rounded-lg text-black"
+                        required
+                    />
+                </div>
+                <div className="mb-6">
+                    <label className="block text-white text-md mb-2">Tags (comma-separated)</label>
+                    <input
+                        type="text"
+                        name="tags"
+                        value={formData.tags}
+                        onChange={handleChange}
+                        placeholder="Sustainability, Green Tech"
+                        className="w-full p-4 border border-gray-300 rounded-lg text-black"
+                        required
+                    />
+                </div>
             </div>
-            <div className="mb-4">
-                <label className="block text-white text-md mb-2">Venue</label>
-                <input
-                    type="text"
-                    name="venue"
-                    value={formData.venue}
-                    onChange={handleChange}
-                    placeholder="Talkatora Stadium"
-                    className="w-full p-3 border border-gray-300 rounded-lg text-black"
-                    required
-                />
+            <div className="grid grid-cols-2 gap-12">
+                <div className="mb-6">
+                    <label className="block text-white text-md mb-2">Speakers (comma-separated)</label>
+                    <input
+                        type="text"
+                        name="speakers"
+                        value={formData.speakers}
+                        onChange={handleChange}
+                        placeholder="John Doe, Martin"
+                        className="w-full p-4 border border-gray-300 rounded-lg text-black"
+                        required
+                    />
+                </div>
+                <div className="mb-6">
+                    <label className="block text-white text-md mb-2">Price</label>
+                    <input
+                        type="text"
+                        name="price"
+                        value={formData.price}
+                        onChange={handleChange}
+                        placeholder="999/-"
+                        className="w-full p-4 border border-gray-300 rounded-lg text-black"
+                        required
+                    />
+                </div>
             </div>
-            <div className="mb-4">
-                <label className="block text-white text-md mb-2">Event Name</label>
-                <input
-                    type="text"
-                    name="title"
-                    value={formData.title}
-                    onChange={handleChange}
-                    placeholder="Title"
-                    className="w-full p-3 border border-gray-300 rounded-lg text-black"
-                    required
-                />
-            </div>
-            <div className="mb-4">
-                <label className="block text-white text-md mb-2">Tags (comma-separated)</label>
-                <input
-                    type="text"
-                    name="tags"
-                    value={formData.tags}
-                    onChange={handleChange}
-                    placeholder="Sustainability, Green Tech"
-                    className="w-full p-3 border border-gray-300 rounded-lg text-black"
-                    required
-                />
-            </div>
-            <div className="mb-4">
-                <label className="block text-white text-md mb-2">Speakers (comma-separated)</label>
-                <input
-                    type="text"
-                    name="speakers"
-                    value={formData.speakers}
-                    onChange={handleChange}
-                    placeholder="john doe , Martin"
-                    className="w-full p-3 border border-gray-300 rounded-lg text-black"
-                    required
-                />
-            </div>
-            <div className="mb-4">
-                <label className="block text-white text-md mb-2">Price</label>
-                <input
-                    type="text"
-                    name="price"
-                    value={formData.price}
-                    onChange={handleChange}
-                    placeholder="999/-"
-                    className="w-full p-3 border border-gray-300 rounded-lg text-black"
-                    required
-                />
-            </div>
-            <div className="mb-4">
+            <div className="mb-6">
                 <label className="block text-white text-md mb-2">Description</label>
                 <textarea
                     name="description"
                     value={formData.description}
                     onChange={handleChange}
                     placeholder="Description"
-                    className="w-full p-3 border border-gray-300 rounded-lg text-black"
+                    className="w-full p-4 border border-gray-300 rounded-lg text-black"
                     required
                 />
             </div>
-            <div className="mb-4">
+            <div className="mb-6">
                 <label className="block text-white text-md mb-2">Image URL</label>
                 <input
                     type="url"
@@ -189,7 +196,7 @@ const EventForm = ({ onSubmit, className, initialData, onDelete }) => {
                     value={formData.imageUrl}
                     onChange={handleChange}
                     placeholder="Image URL"
-                    className="w-full p-3 border border-gray-300 rounded-lg text-black"
+                    className="w-full p-4 border border-gray-300 rounded-lg text-black"
                     required
                 />
             </div>

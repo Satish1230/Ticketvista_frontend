@@ -31,7 +31,7 @@ const Landing = () => {
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center bg-[#380c44] mt-6 text-white p-4 sm:p-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl w-full">
                 <div className="flex flex-col justify-center">
                     <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold">
                         <span className="block">Organizing</span>
@@ -62,7 +62,7 @@ const Landing = () => {
                 <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-center">
                     Stay Tuned for...
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 h-80 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 h-80 gap-12">
                     {cardsData.map((card, index) => (
                         <Card
                             key={index}

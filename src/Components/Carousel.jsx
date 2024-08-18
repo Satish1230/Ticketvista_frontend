@@ -66,11 +66,14 @@ function Carousel() {
     return (
         <Slider {...carouselSettings}>
             {slidesData.map((slide, index) => (
-                <div key={index} className="relative flex justify-center items-center h-full">
-                    <img src={slide.img} alt={`Slide ${index + 1}`} className="w-full h-auto" />
+                <div key={index} className="relative flex justify-center items-center h-full rounded-lg overflow-hidden">
+                    <img src={slide.img} alt={`Slide ${index + 1}`} className="w-full h-auto rounded-lg" />
                     {(slide.title || slide.text) && (
                         <div className="absolute bottom-0 w-full flex justify-center items-center text-white p-4 lg:p-8">
-
+                            <div className="bg-black bg-opacity-50 rounded-lg p-4 text-center">
+                                {/* <h2 className="text-xl lg:text-3xl font-bold">{slide.title}</h2> */}
+                                {/* <p className="text-sm lg:text-lg mt-2">{slide.text}</p> */}
+                            </div>
                         </div>
                     )}
                 </div>
