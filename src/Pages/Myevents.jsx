@@ -68,12 +68,14 @@ const Myevents = () => {
                 const result = await response.json();
                 setEvents(events.map(event => (event._id === currentEvent._id ? result.event : event)));
             } else {
+                const storedUser = localStorage.getItem('user');
+                const email = JSON.parse(storedUser);
                 response = await fetch('http://localhost:3030/events', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ ...data, user: user.email }),
+                    body: JSON.stringify({ ...data, email }),
                 });
 
                 if (!response.ok) {

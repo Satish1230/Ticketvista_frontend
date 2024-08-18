@@ -35,6 +35,21 @@ const EventDetailsPage = () => {
 
     const handleGetTickets = async () => {
         try {
+            // Fetch user from localStorage
+            const user = JSON.parse(localStorage.getItem('user'));
+
+            if (!user) {
+                alert('User not found in localStorage. Please log in first.');
+                return;
+            }
+
+            // Generate a random ticket number
+            const generateTicketNumber = () => {
+                return `TICKET-${Math.floor(100000 + Math.random() * 900000)}`; // Generates a random 6-digit number
+            };
+
+            const ticketNumber = generateTicketNumber();
+
             const response = await fetch('http://localhost:3030/api/tickets/issue-ticket', {
                 method: 'POST',
                 headers: {
@@ -43,11 +58,15 @@ const EventDetailsPage = () => {
                 body: JSON.stringify({
                     eventName: title,
                     eventDate: date,
-                    ticketNumber: 'TICKET12345', // This should be dynamically generated
+                    ticketNumber: ticketNumber, // Use the dynamically generated ticket number
                     eventImage: imageUrl,
-
+                    venue: venue,
+                    location: eventLocation,
+                    time: time,
+                    email: user, // Include the user's email in the request
                 }),
             });
+
 
             const result = await response.json();
             if (response.ok) {
@@ -71,32 +90,34 @@ const EventDetailsPage = () => {
             <div className="mb-8 ">
                 <p className="text-xl font-bold text-white mb-2">Date:</p>
                 <p className="text-lg text-gray-200 mb-2">{formatDate(date)}</p>
+
+            </div>
+
+            <div className="mb-8">
+                <p className="text-xl font-semibold text-white mb-2">Time:</p>
+                <p className="text-lg text-gray-200">{time}</p>
+            </div>
+
+
+            <div className="mb-8">
+                <p className="text-xl font-semibold text-white mb-2">Price:</p>
+                <p className="text-lg text-gray-200">{price}</p>
+            </div>
+
+            <div className="mb-8">
+                <p className="text-xl font-semibold text-white mb-2">Venue:</p>
+                <p className="text-lg text-gray-200">{venue}</p>
                 <p className="text-lg text-gray-200">{eventLocation}</p>
             </div>
 
             <div className="mb-8">
-                <p className="text-xl font-semibold text-blue-800 mb-2">Price:</p>
-                <p className="text-lg text-blue-700">{price}</p>
+                <p className="text-xl font-semibold text-white mb-2">Speakers:</p>
+                <p className="text-lg text-gray-200">{speakers}</p>
             </div>
 
             <div className="mb-8">
-                <p className="text-xl font-semibold text-blue-800 mb-2">Venue:</p>
-                <p className="text-lg text-blue-700">{venue}</p>
-            </div>
-
-            <div className="mb-8">
-                <p className="text-xl font-semibold text-blue-800 mb-2">Time:</p>
-                <p className="text-lg text-blue-700">{time}</p>
-            </div>
-
-            <div className="mb-8">
-                <p className="text-xl font-semibold text-blue-800 mb-2">Speakers:</p>
-                <p className="text-lg text-blue-700">{speakers}</p>
-            </div>
-
-            <div className="mb-8">
-                <p className="text-xl font-semibold text-blue-800 mb-2">Description:</p>
-                <p className="text-lg text-blue-700">{description}</p>
+                <p className="text-xl font-semibold text-white mb-2">Description:</p>
+                <p className="text-lg text-gray-200">{description}</p>
             </div>
 
             <div className="flex justify-center">

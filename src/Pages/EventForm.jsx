@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import InputMask from 'react-input-mask';
 import Button from '../Components/Button';
 
 const EventForm = ({ onSubmit, className, initialData, onDelete }) => {
@@ -7,6 +8,10 @@ const EventForm = ({ onSubmit, className, initialData, onDelete }) => {
         location: '',
         title: '',
         tags: '',
+        speakers: '',
+        time: '',
+        venue: '',
+        price: '',
         description: '',
         imageUrl: ''
     });
@@ -18,6 +23,10 @@ const EventForm = ({ onSubmit, className, initialData, onDelete }) => {
                 location: initialData.location || '',
                 title: initialData.title || '',
                 tags: initialData.tags ? initialData.tags.join(', ') : '',
+                speakers: initialData.tags ? initialData.speakers.join(', ') : '',
+                price: initialData.price || '',
+                time: initialData.time || '',
+                venue: initialData.venue || '',
                 description: initialData.description || '',
                 imageUrl: initialData.imageUrl || ''
             });
@@ -33,10 +42,17 @@ const EventForm = ({ onSubmit, className, initialData, onDelete }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit(formData);
+        onSubmit({
+            ...formData,
+            date: formatDate(formData.date) // Ensure date is in MM/DD/YYYY format
+        });
     };
 
-    // Handle event deletion
+    const formatDate = (date) => {
+        const [month, day, year] = date.split('/');
+        return `${month.padStart(2, '0')}/${day.padStart(2, '0')}/${year}`;
+    };
+
     const handleDelete = async () => {
         if (!initialData || !initialData._id) return;
 
@@ -49,7 +65,6 @@ const EventForm = ({ onSubmit, className, initialData, onDelete }) => {
                 throw new Error('Failed to delete event');
             }
 
-            // Call the onDelete function passed as a prop to handle UI update
             onDelete(initialData._id);
         } catch (error) {
             console.error('Error deleting event:', error);
@@ -60,15 +75,17 @@ const EventForm = ({ onSubmit, className, initialData, onDelete }) => {
         <form onSubmit={handleSubmit} className={`bg-white mt-12 bg-opacity-10 backdrop-blur-lg p-6 rounded-lg shadow-lg w-96`}>
             <div className="mb-4">
                 <label className="block text-white text-md mb-2">Date</label>
-                <input
-                    type="date"
+                <InputMask
+                    mask="99/99/9999"
                     name="date"
                     value={formData.date}
                     onChange={handleChange}
+                    placeholder="MM/DD/YYYY"
                     className="w-full p-3 border border-gray-300 rounded-lg text-black"
                     required
                 />
             </div>
+            {/* Rest of the form inputs remain the same */}
             <div className="mb-4">
                 <label className="block text-white text-md mb-2">Location</label>
                 <input
@@ -77,6 +94,30 @@ const EventForm = ({ onSubmit, className, initialData, onDelete }) => {
                     value={formData.location}
                     onChange={handleChange}
                     placeholder="Location"
+                    className="w-full p-3 border border-gray-300 rounded-lg text-black"
+                    required
+                />
+            </div>
+            <div className="mb-4">
+                <label className="block text-white text-md mb-2">Time</label>
+                <input
+                    type="text"
+                    name="time"
+                    value={formData.time}
+                    onChange={handleChange}
+                    placeholder="2:00"
+                    className="w-full p-3 border border-gray-300 rounded-lg text-black"
+                    required
+                />
+            </div>
+            <div className="mb-4">
+                <label className="block text-white text-md mb-2">Venue</label>
+                <input
+                    type="text"
+                    name="venue"
+                    value={formData.venue}
+                    onChange={handleChange}
+                    placeholder="Talkatora Stadium"
                     className="w-full p-3 border border-gray-300 rounded-lg text-black"
                     required
                 />
@@ -101,6 +142,30 @@ const EventForm = ({ onSubmit, className, initialData, onDelete }) => {
                     value={formData.tags}
                     onChange={handleChange}
                     placeholder="Sustainability, Green Tech"
+                    className="w-full p-3 border border-gray-300 rounded-lg text-black"
+                    required
+                />
+            </div>
+            <div className="mb-4">
+                <label className="block text-white text-md mb-2">Speakers (comma-separated)</label>
+                <input
+                    type="text"
+                    name="speakers"
+                    value={formData.speakers}
+                    onChange={handleChange}
+                    placeholder="john doe , Martin"
+                    className="w-full p-3 border border-gray-300 rounded-lg text-black"
+                    required
+                />
+            </div>
+            <div className="mb-4">
+                <label className="block text-white text-md mb-2">Price</label>
+                <input
+                    type="text"
+                    name="price"
+                    value={formData.price}
+                    onChange={handleChange}
+                    placeholder="999/-"
                     className="w-full p-3 border border-gray-300 rounded-lg text-black"
                     required
                 />

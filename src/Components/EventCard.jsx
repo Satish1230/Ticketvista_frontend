@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EventCard = ({ date, location, title, tags, description, imageUrl, onViewDetails, user, onEdit, buttonText = 'View Details' }) => {
+const EventCard = ({ date, location, title, tags, description, imageUrl, price, onViewDetails, user, onEdit, buttonText = 'View Details' }) => {
     return (
         <div className="bg-white bg-opacity-10 backdrop-blur-lg p-6 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 rounded-md">
             <div className="flex-shrink-0 shadow-lg shadow-black w-full md:w-72 h-56 overflow-hidden rounded-md">
@@ -8,7 +8,8 @@ const EventCard = ({ date, location, title, tags, description, imageUrl, onViewD
             </div>
             <div className="flex-grow max-h-56 overflow-y-auto">
                 <h2 className="text-2xl font-bold">{title}</h2>
-                <p className="text-sm">{date} - {location}</p>
+                <p className="text-sm">{new Date(date).toLocaleDateString()} - {location}</p>
+                <p className="text-sm font-semibold">₹{price}</p> {/* Displaying the price */}
                 <div className="flex flex-wrap space-x-2 my-2">
                     {tags.map((tag, index) => (
                         <span key={index} className="px-2 py-1 bg-white bg-opacity-10 backdrop-blur-lg rounded-full text-xs">{tag}</span>

@@ -7,6 +7,7 @@ import SignUp from './Pages/Signup';
 import EventDetailsPage from './Pages/EventDetails';
 import Myevents from './Pages/Myevents'; // Capitalized import
 import Dashboard from './Pages/Dashboard';
+import ContactUs from './Pages/ContactUs';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 
@@ -38,6 +39,7 @@ function Main() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/event-details" element={<EventDetailsPage />} />
           <Route path="/events" element={<EventListPage />} />
+          <Route path="/contact" element={<ContactUs />} />
         </Routes>
       </div>
 

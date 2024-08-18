@@ -93,7 +93,7 @@ function Header() {
                                 className={`nav-link relative ${selectedLink === '/dashboard' ? 'text-pink-500' : 'text-white hover:text-pink-500'}`}
                                 onClick={() => setSelectedLink('/dashboard')}
                             >
-                                Dashboard
+                                Tickets
                             </Link>
                         )}
                         <Link
