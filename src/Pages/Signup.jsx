@@ -53,7 +53,7 @@ const SignUp = () => {
         }
 
         try {
-            const response = await fetch('https://ticketvista-backend.onrender.com/api/users/register', {
+            const response = await fetch('http://localhost:3030/api/users/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -154,7 +154,14 @@ const SignUp = () => {
                         </div>
                         {error && <p className="text-red-500">{error}</p>}
                         <Button text="Sign Up" className="w-full py-3 text-lg font-semibold" />
+                        <p>Login through </p>
+                        <Button
+                            text="Google"
+                            className=" text-lg font-semibold"
+                        />
                     </form>
+
+
                 </div>
             </div>
         </div>

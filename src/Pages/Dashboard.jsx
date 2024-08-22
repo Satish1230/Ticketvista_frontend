@@ -10,7 +10,7 @@ const Dashboard = () => {
             const email = JSON.parse(storedUser);
             // console.log('Email:', email); // Debugging statement
             try {
-                const response = await fetch('https://ticketvista-backend.onrender.com/api/tickets/get-tickets', { method: "POST", body: JSON.stringify({ email }), headers: { "Content-Type": "application/json" } });
+                const response = await fetch('http://localhost:3030/api/tickets/get-tickets', { method: "POST", body: JSON.stringify({ email }), headers: { "Content-Type": "application/json" } });
                 console.log('Response:', response); // Debugging statement
                 if (response.ok) {
                     const data = await response.json();

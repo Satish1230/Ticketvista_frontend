@@ -50,7 +50,7 @@ const EventDetailsPage = () => {
 
             const ticketNumber = generateTicketNumber();
 
-            const response = await fetch('https://ticketvista-backend.onrender.com/api/tickets/issue-ticket', {
+            const response = await fetch('http://localhost:3030/api/tickets/issue-ticket', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

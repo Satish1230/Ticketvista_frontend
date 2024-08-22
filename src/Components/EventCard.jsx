@@ -15,7 +15,7 @@ const EventCard = ({ date, location, title, tags, description, imageUrl, price, 
                         <span key={index} className="px-2 py-1 bg-white bg-opacity-10 backdrop-blur-lg rounded-full text-xs">{tag}</span>
                     ))}
                 </div>
-                {console.log(user)}
+                {/* {console.log(user)} */}
                 <p className="text-sm mb-2 line-clamp-3 overflow-hidden text-ellipsis">{description}</p>
                 <div className="flex space-x-2">
                     {buttonText === 'Edit' ? (

@@ -19,7 +19,7 @@ const EventForm = ({ onSubmit, className, initialData, onDelete }) => {
     useEffect(() => {
         if (initialData) {
             setFormData({
-                date: initialData.date || '',
+                date: initialData.date ? formatDateToLocal(initialData.date) : '',
                 location: initialData.location || '',
                 title: initialData.title || '',
                 tags: initialData.tags ? initialData.tags.join(', ') : '',
@@ -44,20 +44,25 @@ const EventForm = ({ onSubmit, className, initialData, onDelete }) => {
         e.preventDefault();
         onSubmit({
             ...formData,
-            date: formatDate(formData.date) // Ensure date is in MM/DD/YYYY format
+            date: formatDateToISO(formData.date) // Convert date to ISO format
         });
     };
 
-    const formatDate = (date) => {
+    const formatDateToISO = (date) => {
         const [month, day, year] = date.split('/');
-        return `${month.padStart(2, '0')}/${day.padStart(2, '0')}/${year}`;
+        return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+    };
+
+    const formatDateToLocal = (date) => {
+        const [year, month, day] = date.split('-');
+        return `${month}/${day}/${year}`;
     };
 
     const handleDelete = async () => {
         if (!initialData || !initialData._id) return;
 
         try {
-            const response = await fetch(`https://ticketvista-backend.onrender.com/events/${initialData._id}`, {
+            const response = await fetch(`http://localhost:3030/events/${initialData._id}`, {
                 method: 'DELETE',
             });
 

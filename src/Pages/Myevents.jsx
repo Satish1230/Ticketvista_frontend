@@ -34,7 +34,7 @@ const Myevents = () => {
 
     const fetchEvents = async (email) => {
         try {
-            const response = await fetch(`https://ticketvista-backend.onrender.com/events/user/email`, { method: "POST", body: JSON.stringify({ email }), headers: { "Content-Type": "application/json" } });
+            const response = await fetch(`http://localhost:3030/events/user/email`, { method: "POST", body: JSON.stringify({ email }), headers: { "Content-Type": "application/json" } });
             if (!response.ok) {
                 throw new Error('Failed to fetch events');
             }
@@ -53,7 +53,7 @@ const Myevents = () => {
         try {
             let response;
             if (currentEvent) {
-                response = await fetch(`https://ticketvista-backend.onrender.com/events/${currentEvent._id}`, {
+                response = await fetch(`http://localhost:3030/events/${currentEvent._id}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ const Myevents = () => {
             } else {
                 const storedUser = localStorage.getItem('user');
                 const email = JSON.parse(storedUser);
-                response = await fetch('https://ticketvista-backend.onrender.com/events', {
+                response = await fetch('http://localhost:3030/events', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
