@@ -62,7 +62,7 @@ const EventForm = ({ onSubmit, className, initialData, onDelete }) => {
         if (!initialData || !initialData._id) return;
 
         try {
-            const response = await fetch(`http://localhost:3030/events/${initialData._id}`, {
+            const response = await fetch(`https://ticketvista-backend.onrender.com/events/${initialData._id}`, {
                 method: 'DELETE',
             });
 
